@@ -1,0 +1,11 @@
+service: ecs-autoscaling-metrics
+provider:
+  name: aws
+  runtime: python3.6
+  stage: production
+  region: ap-northeast-1
+functions:
+  normalize_cpu_mem:
+    handler: cluster_handler.normalize_cpu_mem
+    events:
+      - schedule: cron(* * * * ? *)

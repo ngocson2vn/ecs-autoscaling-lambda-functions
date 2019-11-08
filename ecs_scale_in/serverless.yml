@@ -1,0 +1,14 @@
+service: ScaleInECSAppCluster
+provider:
+  name: aws
+  runtime: python2.7
+  region: ap-northeast-1
+functions:
+  drain_ec2instance:
+    handler: scale_handler.drain_ec2instance
+    events:
+      - schedule: rate(5 minutes)
+  terminate_drained_ec2instances:
+    handler: scale_handler.terminate_drained_ec2instances
+    events:
+      - schedule: rate(5 minutes)
